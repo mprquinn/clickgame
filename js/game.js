@@ -43,6 +43,7 @@ Game = (function () {
 
 			$('a.mod').on('click', function () {
 				Game.addModifier($(this).attr('data-modifier'), $(this));
+				$('h3.modifier').text('Clicks per second: ' + s.sps);
 			});
 
 		},
