@@ -16,9 +16,35 @@ Game = (function () {
 
 		},
 
+		checkSave: function () {
+
+			if(typeof(Storage) !== "undefined") {
+
+			    var savedScore = localStorage.getItem('Game.score');
+			
+			    s.score = parseInt(savedScore);
+
+			} else {
+
+			    alert('Your browser does not support local storage');
+
+			}
+
+		},
+
+		save: function (score) {
+
+			localStorage.setItem('Game.score', score);
+			
+		},
+
 		init: function () {
 
 			s = this.settings;
+
+			// Check for stored
+			Game.checkSave();
+			
 			window.setInterval(function () {
 				Game.gameLoop();
 			}, s.timer);
@@ -72,6 +98,7 @@ Game = (function () {
 				if (options == 'speed' ) {
 					s.sps = s.sps * 2;
 					Game.pay(cost);
+					Game.save(s.score);
 				}	
 
 			} else {
