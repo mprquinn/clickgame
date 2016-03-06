@@ -31,6 +31,11 @@ Game = (function () {
 			$('a.button').on('click', function () {
 				console.log('clicked');
 				Game.addScore(s.score, s.sps)
+				Game.updateScore(s.score);
+			});
+
+			$('a.mod').on('click', function () {
+				console.log($(this).attr('data-modifier'));
 			});
 		},
 
@@ -41,6 +46,11 @@ Game = (function () {
 
 		updateScore: function (score) {
 			$('h2.score').text('Your score: ' + score);
+			$('title').text(score);
+		},
+
+		addModifier: function (options) {
+			console.log(options);
 		}
 
 	}
